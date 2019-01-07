@@ -1,0 +1,34 @@
+.slant {
+  clip-path: polygon(0 0, 100% 0, 100% 76%, 0 94%);
+  background: linear-gradient(135deg, #f12711, #f5af19);
+}
+.slant .title {
+  color: #fff;
+  letter-spacing: 1px;
+}
+.slant .subtitle {
+  color: #fff;
+}
+
+.slant-back {
+  clip-path: polygon(0 6%, 100% 26%, 100% 100%, 0% 100%);
+  background: linear-gradient(135deg, #fc466b, #3f5efb);
+}
+
+.slant-back .title {
+  color: #fff;
+  letter-spacing: 1px;
+}
+.slant-back .subtitle {
+  color: #fff;
+}
+
+.padder {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.container {
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+}
