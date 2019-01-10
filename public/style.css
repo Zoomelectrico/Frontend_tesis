@@ -1,6 +1,6 @@
 .slant {
   clip-path: polygon(0 0, 100% 0, 100% 76%, 0 94%);
-  background: linear-gradient(135deg, #f12711, #f5af19);
+  background: linear-gradient(135deg, #23074d, #cc5333);
 }
 .slant .title {
   color: #fff;
@@ -11,8 +11,8 @@
 }
 
 .slant-back {
-  clip-path: polygon(0 6%, 100% 26%, 100% 100%, 0% 100%);
-  background: linear-gradient(135deg, #fc466b, #3f5efb);
+  clip-path: polygon(0 25%, 100% 0, 100% 75%, 0 100%);
+  background: linear-gradient(135deg, #cc5333, #23074d);
 }
 
 .slant-back .title {
@@ -31,4 +31,48 @@
 .container {
   padding-top: 4rem !important;
   padding-bottom: 4rem !important;
+}
+
+.footer {
+  padding-bottom: 3rem !important;
+}
+
+.big-bg {
+  max-height: 100vh;
+  height: 100vh;
+  max-width: 100vw;
+  width: 100vw;
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  padding: 1.5rem;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  height: 90vh;
+  min-height: 85vh;
+  max-height: 90vh;
+  border-radius: 0.5rem;
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.3), 0 16px 64px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  padding: 1rem !important;
+}
+
+.sidebar {
+  flex-basis: 25%;
+  height: 100%;
+  background-color: #eee;
+}
+
+.main {
+  flex-basis: 75%;
+  height: 100%;
+}
+
+.black-bg {
+  background: #333;
+}
+
+.black-bg > h2 {
+  color: #fff;
 }

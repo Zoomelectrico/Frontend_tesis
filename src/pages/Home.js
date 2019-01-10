@@ -1,8 +1,10 @@
 import React from "react";
+import { Navbar, Footer } from "../components";
 
 const Home = props => (
   <>
-    <div className="hero is-large slant">
+    <Navbar />
+    <div className="hero is-medium slant">
       <div className="hero-body">
         <div className="container has-text-centered">
           <h2 className="title">Lorem, ipsum dolor.</h2>
@@ -61,16 +63,38 @@ const Home = props => (
         </div>
       </div>
     </div>
-    <div className="hero is-large slant-back">
+    <div className="hero is-medium slant-back">
       <div className="hero-body">
         <div className="container has-text-centered">
-          <h2 className="title">Lorem ipsum dolor sit.</h2>
+          <h2 className="title">Verificar el RE</h2>
+          <div className="columns">
+            <div className="column is-half is-offset-one-quarter">
+              <form>
+                <div className="field is-grouped">
+                  <p className="control is-expanded">
+                    <input
+                      type="text"
+                      className="input"
+                      placeholder="N carnet"
+                    />
+                  </p>
+                  <p className="control">
+                    <a className="button is-info">Verificar</a>
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div className="container padder">
       <div className="columns">
         <div className="column is-half is-offset-one-quarter">
+          <div className="has-text-centered">
+            <h2 className="title">Alguna Duda?</h2>
+            <p className="subtitle">Contactanos</p>
+          </div>
           <form>
             <div className="field">
               <label htmlFor="name" className="label">
@@ -112,6 +136,7 @@ const Home = props => (
         </div>
       </div>
     </div>
+    <Footer />
   </>
 );
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = props => (
   <header>
-    <nav className="navbar has-shadow is-spaced">
+    <nav className="navbar has-shadow is-spaced is-fixed-top is-transparent">
       <div className="navbar-brand">
         <Link to="/" className="navbar-item">
           <h2>Vota UNIMET</h2>

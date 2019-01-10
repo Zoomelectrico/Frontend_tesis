@@ -4,12 +4,21 @@ class Sidebar extends React.Component {
   state = {};
   render() {
     return (
-      <nav className="panel column is-one-third">
-        <p className="panel-heading">Side Bar</p>
-        <div className="panel-block">
-          <p>Algo</p>
+      <div>
+        <div className="profile">
+          <picture>
+            <img src="" alt="" />
+          </picture>
+          <h2>Nombre y Apellido</h2>
         </div>
-      </nav>
+        <div className="menu">
+          <ul>
+            <li>Item 1</li>
+            <li>Item 1</li>
+            <li>Item 1</li>
+          </ul>
+        </div>
+      </div>
     );
   }
 }

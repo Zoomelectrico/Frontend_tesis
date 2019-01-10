@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Navbar, Footer } from "../components";
 class SignIn extends React.Component {
   state = {
     email: "",
@@ -24,51 +24,55 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="columns">
-          <div className="column has-text-centered">
-            <h2 className="title">Iniciar Sesion</h2>
+      <>
+        <Navbar />
+        <div className="container">
+          <div className="columns">
+            <div className="column has-text-centered">
+              <h2 className="title">Iniciar Sesion</h2>
+            </div>
           </div>
-        </div>
-        <div className="columns">
-          <div className="column is-half is-offset-one-quarter">
-            <form>
-              <div className="field">
-                <p className="control has-icons-left">
-                  <input
-                    type="email"
-                    className="input"
-                    placeholder="p.perez@correo.unimet.edu.ve"
-                    name="email"
-                    id="email"
-                  />
-                  <span className="icon is-small is-left">
-                    <i className="fas fa-envelope" />
-                  </span>
-                </p>
-              </div>
-              <div className="field">
-                <div className="control has-icons-left">
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    className="input"
-                  />
-                  <span className="icon is-small is-left">
-                    <i className="fas fa-lock" />
-                  </span>
+          <div className="columns">
+            <div className="column is-half is-offset-one-quarter">
+              <form>
+                <div className="field">
+                  <p className="control has-icons-left">
+                    <input
+                      type="email"
+                      className="input"
+                      placeholder="p.perez@correo.unimet.edu.ve"
+                      name="email"
+                      id="email"
+                    />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-envelope" />
+                    </span>
+                  </p>
                 </div>
-              </div>
-              <div className="field">
-                <p className="control">
-                  <button className="button is-info">Iniciar Sesion</button>
-                </p>
-              </div>
-            </form>
+                <div className="field">
+                  <div className="control has-icons-left">
+                    <input
+                      type="password"
+                      name="password"
+                      id="password"
+                      className="input"
+                    />
+                    <span className="icon is-small is-left">
+                      <i className="fas fa-lock" />
+                    </span>
+                  </div>
+                </div>
+                <div className="field">
+                  <p className="control">
+                    <button className="button is-info">Iniciar Sesion</button>
+                  </p>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
+        <Footer />
+      </>
     );
   }
 }
