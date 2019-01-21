@@ -3,7 +3,7 @@ import { Navbar, Footer } from "../components";
 
 const Home = props => (
   <>
-    <Navbar />
+    <Navbar login={props.user.login} />
     <div className="hero is-medium slant">
       <div className="hero-body">
         <div className="container has-text-centered">

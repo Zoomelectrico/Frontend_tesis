@@ -1,9 +1,11 @@
 import React from "react";
+import axios from "axios";
 import { Navbar, Footer } from "../components";
 class SignIn extends React.Component {
   state = {
     email: "",
-    password: ""
+    password: "",
+    login: this.props.login
   };
 
   // University Email check
@@ -11,21 +13,39 @@ class SignIn extends React.Component {
   // Password Strength Check
   checkPass = password => password.length >= 8;
 
-  login = () => {
+  // On Change Handler
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  login = async e => {
+    e.preventDefault();
     if (
       this.checkEmail(this.state.email) &&
       this.checkPass(this.state.password)
     ) {
-      // TODO: Login logic
-      return;
+      const { email, password } = this.state;
+      const {
+        data: { success, token, user }
+      } = await axios.post("http://localhost:7777/login", {
+        email,
+        password
+      });
+      if (success) {
+        const _user = { ...user, login: true };
+        return this.props.login({ token, user: _user });
+      }
+      // TODO: Lanzar Error
+      console.log("Not Success");
     }
     // TODO: Lanzar Error
+    console.log("pass or email bad");
   };
 
   render() {
     return (
       <>
-        <Navbar />
+        <Navbar login={this.props.user.login} />
         <div className="container">
           <div className="columns">
             <div className="column has-text-centered">
@@ -34,7 +54,7 @@ class SignIn extends React.Component {
           </div>
           <div className="columns">
             <div className="column is-half is-offset-one-quarter">
-              <form>
+              <form onSubmit={this.login}>
                 <div className="field">
                   <p className="control has-icons-left">
                     <input
@@ -43,6 +63,7 @@ class SignIn extends React.Component {
                       placeholder="p.perez@correo.unimet.edu.ve"
                       name="email"
                       id="email"
+                      onChange={this.handleChange}
                     />
                     <span className="icon is-small is-left">
                       <i className="fas fa-envelope" />
@@ -56,6 +77,8 @@ class SignIn extends React.Component {
                       name="password"
                       id="password"
                       className="input"
+                      placeholder="contraseña"
+                      onChange={this.handleChange}
                     />
                     <span className="icon is-small is-left">
                       <i className="fas fa-lock" />

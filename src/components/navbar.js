@@ -32,9 +32,15 @@ const Navbar = props => (
         </div>
         <div className="navbar-end">
           <div className="navbar-item">
-            <Link to="signin" className="button is-info">
-              Iniciar Sesion
-            </Link>
+            {props.login ? (
+              <button type="button" className="button is-danger">
+                Cerrar Sesion
+              </button>
+            ) : (
+              <Link to="signin" className="button is-info">
+                Iniciar Sesion
+              </Link>
+            )}
           </div>
         </div>
       </div>
