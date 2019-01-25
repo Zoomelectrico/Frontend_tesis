@@ -3,7 +3,7 @@ import { Navbar, Footer } from "../components";
 
 const Home = props => (
   <>
-    <Navbar login={props.user.login} />
+    <Navbar login={props.user.login} logout={props.logout} />
     <div className="hero is-medium slant">
       <div className="hero-body">
         <div className="container has-text-centered">
@@ -79,7 +79,7 @@ const Home = props => (
                     />
                   </p>
                   <p className="control">
-                    <a className="button is-info">Verificar</a>
+                    <a className="button is-info is-inverted">Verificar</a>
                   </p>
                 </div>
               </form>
@@ -127,7 +127,7 @@ const Home = props => (
             <div className="field">
               <textarea className="textarea" placeholder="Probando Mensaje" />
             </div>
-            <div className="field">
+            <div className="field has-text-centered">
               <button type="button" className="button is-info">
                 Enviar
               </button>

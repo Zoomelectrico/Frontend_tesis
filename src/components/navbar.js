@@ -16,24 +16,45 @@ const Navbar = props => (
       </div>
 
       <div id="navbar" className="navbar-menu">
-        <div className="navbar-start">
-          <div className="navbar-item">
-            <Link to="/about">Acerca de</Link>
+        {props.login ? (
+          <div className="navbar-start">
+            <div className="navbar-item">
+              <Link to="/profile">Perfil</Link>
+            </div>
+            <div className="navbar-item">
+              <Link to="/vote">Votar</Link>
+            </div>
+            <div className="navbar-item">
+              <Link to="/postulate">Postular</Link>
+            </div>
+            <div className="navbar-item">
+              <Link to="/results">Resultados</Link>
+            </div>
           </div>
-          <div className="navbar-item">
-            <Link to="/documents">Documentos</Link>
+        ) : (
+          <div className="navbar-start">
+            <div className="navbar-item">
+              <Link to="/about">Acerca de</Link>
+            </div>
+            <div className="navbar-item">
+              <Link to="/documents">Documentos</Link>
+            </div>
+            <div className="navbar-item">
+              <Link to="/postulation">Postulacion</Link>
+            </div>
+            <div className="navbar-item">
+              <Link to="/results">Resultados</Link>
+            </div>
           </div>
-          <div className="navbar-item">
-            <Link to="/postulation">Postulacion</Link>
-          </div>
-          <div className="navbar-item">
-            <Link to="/results">Resultados</Link>
-          </div>
-        </div>
+        )}
         <div className="navbar-end">
           <div className="navbar-item">
             {props.login ? (
-              <button type="button" className="button is-danger">
+              <button
+                type="button"
+                className="button is-danger"
+                onClick={props.logout}
+              >
                 Cerrar Sesion
               </button>
             ) : (

@@ -32,8 +32,7 @@ class SignIn extends React.Component {
         password
       });
       if (success) {
-        const _user = { ...user, login: true };
-        return this.props.login({ token, user: _user });
+        return this.props.login({ token, user: { ...user, login: true } });
       }
       // TODO: Lanzar Error
       console.log("Not Success");
@@ -45,7 +44,7 @@ class SignIn extends React.Component {
   render() {
     return (
       <>
-        <Navbar login={this.props.user.login} />
+        <Navbar login={this.props.user.login} logout={this.props.logout} />
         <div className="container">
           <div className="columns">
             <div className="column has-text-centered">
@@ -86,7 +85,7 @@ class SignIn extends React.Component {
                   </div>
                 </div>
                 <div className="field">
-                  <p className="control">
+                  <p className="control has-text-centered">
                     <button className="button is-info">Iniciar Sesion</button>
                   </p>
                 </div>

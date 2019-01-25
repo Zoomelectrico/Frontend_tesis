@@ -1,14 +1,12 @@
 import React from "react";
-import { Navbar, Footer, Profile, Vote } from "../components";
-class Dashboard extends React.Component {
-  state = {};
-  componentDidMount() {}
+import { Navbar, Footer } from "../components";
+class Vote extends React.Component {
   render() {
     return (
       <>
         <Navbar login={this.props.user.login} logout={this.props.logout} />
         <div className="container">
-          <Profile user={this.props.user} />
+          <h2 className="title">Vote</h2>
         </div>
         <Footer />
       </>
@@ -16,4 +14,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+export default Vote;

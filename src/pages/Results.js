@@ -5,7 +5,7 @@ class Results extends React.Component {
   render() {
     return (
       <>
-        <Navbar login={this.props.user.login} />
+        <Navbar login={this.props.user.login} logout={this.props.logout} />
         <div className="container">
           <h2>Results</h2>
         </div>

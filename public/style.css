@@ -1,6 +1,11 @@
 .slant {
   clip-path: polygon(0 0, 100% 0, 100% 76%, 0 94%);
-  background: linear-gradient(135deg, #23074d, #cc5333);
+  background-image: linear-gradient(
+    -225deg,
+    #22e1ff 0%,
+    #1d8fe1 48%,
+    #625eb1 100%
+  );
 }
 .slant .title {
   color: #fff;
@@ -12,7 +17,12 @@
 
 .slant-back {
   clip-path: polygon(0 25%, 100% 0, 100% 75%, 0 100%);
-  background: linear-gradient(135deg, #cc5333, #23074d);
+  background-image: linear-gradient(
+    -225deg,
+    #22e1ff 0%,
+    #1d8fe1 48%,
+    #625eb1 100%
+  );
 }
 
 .slant-back .title {
@@ -42,26 +52,73 @@
   height: 100vh;
   max-width: 100vw;
   width: 100vw;
-  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  background-image: linear-gradient(
+    -225deg,
+    #22e1ff 0%,
+    #1d8fe1 48%,
+    #625eb1 100%
+  );
   padding: 1.5rem;
 }
 
 .dashboard {
-  display: flex;
-  flex-direction: row;
-  height: 90vh;
-  min-height: 85vh;
-  max-height: 90vh;
-  border-radius: 0.5rem;
-  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.3), 0 16px 64px rgba(0, 0, 0, 0.1);
-  background: #fff;
-  padding: 1rem !important;
+  max-height: 100vh;
+  max-width: 100vw;
+  height: 100vh;
+  width: 100vw;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 
-.main {
-  flex-basis: 100%;
-  height: 100%;
-  width: 100%;
+.dashboard > .sidebar {
+  max-width: 250px;
+  width: 250px;
+  max-height: 100vh;
+  min-height: 100vh;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  background: #fff;
+  border-right: 1px solid #333;
+}
+
+.dashboard > .main {
+  max-width: 100%;
+  margin-left: 250px;
+  min-height: 100vh;
+  height: 100vh;
+  position: relative;
+  background: #fff;
+}
+
+@media screen and (min-width: 1088px) {
+  .main > .hero > .hero-head > .navbar > .container {
+    max-width: calc(1088px - 250px);
+    width: calc(1088px - 250px);
+  }
+}
+
+@media screen and (max-width: 1192px) {
+  .dashboard > .sidebar {
+    width: 0px;
+  }
+  .dashboard > .main {
+    margin-left: 0px;
+  }
+  .main > .hero > .hero-head > .navbar > .container {
+    max-width: 960px;
+    width: 960px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .main > .hero > .hero-head > .navbar > .container {
+    max-width: 960px;
+    width: 960px;
+  }
 }
 
 .black-bg {
@@ -74,4 +131,15 @@
 
 p {
   margin-bottom: 1.5rem !important;
+}
+
+.profile-pic {
+  width: 200px !important;
+  height: 200px !important;
+  max-width: 200px !important;
+  max-height: 200px !important;
+  margin: auto;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1),
+    -2rem 1.5rem 3rem rgba(0, 0, 0, 0.05);
+  margin-bottom: 0.5rem;
 }

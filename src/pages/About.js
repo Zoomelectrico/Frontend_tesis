@@ -3,7 +3,7 @@ import { Navbar, Footer } from "../components";
 
 const About = props => (
   <>
-    <Navbar login={props.user.login} />
+    <Navbar login={props.user.login} logout={props.logout} />
     <div className="container has-text-centered padder">
       <h2 className="title">Lorem ipsum dolor sit.</h2>
       <p>

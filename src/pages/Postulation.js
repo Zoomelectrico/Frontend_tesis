@@ -92,7 +92,7 @@ class Postulation extends React.Component {
   render() {
     return (
       <>
-        <Navbar login={this.props.user.login} />
+        <Navbar login={this.props.user.login} logout={this.props.logout} />
         <div className="container">
           <div className="columns">
             <div className="column has-text-centered">

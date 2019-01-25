@@ -7,16 +7,28 @@ class Profile extends React.Component {
       <div className="container has-text-centered">
         <div className="columns">
           <div className="column is-half is-offset-one-quarter">
-            <h2 className="title">Jose Quevedo</h2>
+            <figure className="image has-text-centered">
+              <img
+                src="https://via.placeholder.com/250"
+                alt="Profile Pic"
+                className="is-rounded has-shadow profile-pic"
+              />
+            </figure>
+            <h2 className="title">{this.props.user.name}</h2>
             <p className="description">
-              Email: jose@avilatek.co
+              <strong>Email:</strong> <a>{this.props.user.email}</a>
               <br />
-              Carrera: Ing. Sistemas
+              <strong>Carrera:</strong> {this.props.user.major}
               <br />
             </p>
-            <Link to="/dashboard/vote" className="button is-info">
-              Votar
-            </Link>
+            <div className="buttons has-addons is-centered">
+              <Link to="/vote" className="button is-success">
+                Candidatos
+              </Link>
+              <Link to="/vote" className="button is-info">
+                Votar
+              </Link>
+            </div>
           </div>
         </div>
       </div>
