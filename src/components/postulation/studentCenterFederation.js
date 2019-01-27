@@ -4,7 +4,7 @@ const studentCenterFederation = props => (
   <div className="container">
     <h2 className="title">
       <form onSubmit={props.submitFunction}>
-        <p>adas</p>
+        <p>studentCenterFederation</p>
       </form>
     </h2>
   </div>

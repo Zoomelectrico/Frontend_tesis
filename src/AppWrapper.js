@@ -10,7 +10,8 @@ import {
   Postulation,
   Results,
   SignIn,
-  Vote
+  Vote,
+  Postulate
 } from "./pages";
 
 class AppWrapper extends React.Component {
@@ -79,6 +80,12 @@ class AppWrapper extends React.Component {
         exact: true,
         component: props => (
           <Vote {...props} user={this.state.user} logout={this.logout} />
+        )
+      },
+      {
+        path: "/postulate",
+        component: props => (
+          <Postulate {...props} user={this.state.user} logout={this.logout} />
         )
       }
     ]
