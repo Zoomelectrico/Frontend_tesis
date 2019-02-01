@@ -7,3 +7,4 @@ export { default as Results } from "./Results";
 export { default as Dashboard } from "./Dashboard";
 export { default as Vote } from "./vote";
 export { default as Postulate } from "./Postulate";
+export { default as Candidates } from "./Candidates";

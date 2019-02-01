@@ -22,7 +22,7 @@ class Profile extends React.Component {
               <br />
             </p>
             <div className="buttons has-addons is-centered">
-              <Link to="/vote" className="button is-success">
+              <Link to="/candidate" className="button is-success">
                 Candidatos
               </Link>
               <Link to="/vote" className="button is-info">

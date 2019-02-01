@@ -11,7 +11,8 @@ import {
   Results,
   SignIn,
   Vote,
-  Postulate
+  Postulate,
+  Candidates
 } from "./pages";
 
 class AppWrapper extends React.Component {
@@ -84,9 +85,14 @@ class AppWrapper extends React.Component {
       },
       {
         path: "/postulate",
-
         component: props => (
           <Postulate {...props} user={this.state.user} logout={this.logout} />
+        )
+      },
+      {
+        path: "/candidate",
+        component: props => (
+          <Candidates {...props} user={this.state.user} logout={this.logout} />
         )
       }
     ]
