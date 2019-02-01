@@ -84,6 +84,7 @@ class AppWrapper extends React.Component {
       },
       {
         path: "/postulate",
+
         component: props => (
           <Postulate {...props} user={this.state.user} logout={this.logout} />
         )

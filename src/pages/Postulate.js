@@ -5,9 +5,15 @@ import {
   FacultyCouncil,
   SchoolCouncil,
   StudentCenter,
-  StudentCenterFederation
+  StudentCenterFederation,
+  ResumeTable
 } from "../components/postulation";
 const routes = [
+  {
+    path: "/postulate",
+    name: "Tabla Resumen",
+    Component: props => <ResumeTable {...props} />
+  },
   {
     path: "/postulate/faculty-council",
     name: "Consejo de Facultad",
@@ -40,8 +46,13 @@ class Postulate extends React.Component {
           <Router>
             <>
               <NavTabs links={routes} />
-              {routes.map(({ path, name, Component }) => (
-                <Route key={name} path={path} component={Component} />
+              {routes.map(({ path, name, Component, exact }) => (
+                <Route
+                  key={name}
+                  path={path}
+                  component={Component}
+                  exact={true}
+                />
               ))}
             </>
           </Router>
