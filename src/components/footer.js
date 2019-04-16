@@ -7,8 +7,9 @@ const Footer = props => (
         <strong>Vota UNIMET</strong> by{" "}
         <a href="https://about.me/zoomelectrico">Jose Roberto Quevedo</a>.
         <br />
-        Power by <a href="#">React</a>, <a href="#">Bulma</a> and{" "}
-        <a href="#">now.sh</a>
+        Power by <a href="https://reactjs.org/">react</a>,{" "}
+        <a href="https://bulma.io/">bulma</a> and{" "}
+        <a href="https://zeit.co/now">now.sh</a>
       </p>
     </div>
   </footer>

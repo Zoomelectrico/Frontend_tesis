@@ -26,23 +26,22 @@ const inputs = [
     name: "treasurer",
     title: "Nombre y Apellido del Tesorero",
     type: "text"
-  },
-  {
-    name: "group",
-    title: "Seleccione un Grupo Electoral",
-    options: [
-      { name: "Grupo 1", value: 1 },
-      { name: "Grupo 2", value: 2 },
-      { name: "Grupo 3", value: 3 }
-    ],
-    type: "select"
   }
 ];
 class StudentCenterFederation extends React.Component {
-  state = {};
+  state = {
+    board: true
+  };
 
   handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+    const _state = { ...this.state };
+    _state.postulation[e.target.name] = e.target.value;
+    this.setState(_state);
+  };
+
+  next = e => {
+    e.preventDefault();
+    this.setState({ board: false });
   };
 
   render() {
@@ -53,10 +52,20 @@ class StudentCenterFederation extends React.Component {
         </h2>
         <div className="columns">
           <div className="column is-half is-offset-one-quarter">
-            {inputs.map(input => inputHelper(input, this.handleChange))}
-            <div className="justify-content-center">
-              <button className="button is-info">Siguiente</button>
-            </div>
+            {this.state.board ? (
+              <>
+                {inputs.map(input => inputHelper(input, this.handleChange))}
+                <div className="justify-content-center">
+                  <button className="button is-info" onClick={this.next}>
+                    Siguiente
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <h2 className="title">Next</h2>
+              </>
+            )}
           </div>
         </div>
       </div>

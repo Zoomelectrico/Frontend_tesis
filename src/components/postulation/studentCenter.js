@@ -16,16 +16,6 @@ const inputs = [
     name: "treasurer",
     title: "Nombre y Apellido del Tesorero",
     type: "text"
-  },
-  {
-    name: "group",
-    title: "Seleccione un Grupo Electoral",
-    options: [
-      { name: "Grupo 1", value: 1 },
-      { name: "Grupo 2", value: 2 },
-      { name: "Grupo 3", value: 3 }
-    ],
-    type: "select"
   }
 ];
 class StudentCenter extends React.Component {

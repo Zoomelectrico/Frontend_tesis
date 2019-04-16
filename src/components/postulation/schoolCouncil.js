@@ -16,19 +16,6 @@ const inputs = [
       { name: "Grupo 3", value: 3 }
     ],
     type: "select"
-  },
-  {
-    name: "school",
-    title: "Seleccione una Escuela",
-    options: [
-      { name: "Ingenieira de Sistemas", value: 1 },
-      { name: "Ingenieria de Produccion", value: 2 },
-      { name: "Ingenieria Quimica", value: 3 },
-      { name: "Ingenieria Civil", value: 4 },
-      { name: "Ingenieria Mecanica", value: 5 },
-      { name: "Ingenieria Electrica", value: 6 }
-    ],
-    type: "select"
   }
 ];
 class schoolCouncil extends React.Component {

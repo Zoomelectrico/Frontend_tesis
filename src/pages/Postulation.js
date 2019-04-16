@@ -36,8 +36,13 @@ class Postulation extends React.Component {
       ],
       representative: [
         {
-          name: "nameRepresentative",
-          title: "Nombre y Apellido",
+          name: "firstNameRepresentative",
+          title: "Nombre",
+          type: "text"
+        },
+        {
+          name: "lastNameRepresentative",
+          title: "Apellido",
           type: "text"
         },
         {

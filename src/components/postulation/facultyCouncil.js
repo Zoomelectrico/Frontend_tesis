@@ -8,17 +8,6 @@ const inputs = [
     type: "text"
   },
   {
-    name: "group",
-    title: "Seleccione un Grupo Electoral",
-    options: [
-      { name: "Seleccione un Grupo Electoral", value: 0 },
-      { name: "Grupo 1", value: 1 },
-      { name: "Grupo 2", value: 2 },
-      { name: "Grupo 3", value: 3 }
-    ],
-    type: "select"
-  },
-  {
     name: "school",
     title: "Seleccione una Escuela",
     options: [
