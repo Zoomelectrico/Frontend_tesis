@@ -1,72 +1,67 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {
+  UncontrolledCollapse,
+  NavbarBrand,
+  Navbar,
+  NavItem,
+  NavLink,
+  Nav,
+  Container,
+  Row,
+  Col
+} from "reactstrap";
 
-const Navbar = props => (
-  <header>
-    <nav className="navbar has-shadow is-spaced is-fixed-top is-transparent">
-      <div className="navbar-brand">
-        <Link to="/" className="navbar-item">
-          <h2>Vota UNIMET</h2>
-        </Link>
-        <div className="navbar-burger burger" data-target="navbar">
-          <span />
-          <span />
-          <span />
-        </div>
-      </div>
-
-      <div id="navbar" className="navbar-menu">
-        {props.login ? (
-          <div className="navbar-start">
-            <div className="navbar-item">
-              <Link to="/profile">Perfil</Link>
-            </div>
-            <div className="navbar-item">
-              <Link to="/vote">Votar</Link>
-            </div>
-            <div className="navbar-item">
-              <Link to="/postulate">Postular</Link>
-            </div>
-            <div className="navbar-item">
-              <Link to="/results">Resultados</Link>
-            </div>
+const Navigationbar = props => (
+  <>
+    <Navbar className="navbar-top navbar-horizontal navbar-dark" expand="md">
+      <Container className="px-4">
+        <NavbarBrand to="/" tag={Link}>
+          {/* Image */}
+        </NavbarBrand>
+        <button className="navbar-toggler" id="navbar-collapse-main">
+          <span className="navbar-toggler-icon" />
+        </button>
+        <UncontrolledCollapse navbar toggler="#navbar-collapse-main">
+          <div className="navbar-collapse-header d-md-none">
+            <Row>
+              <Col className="collapse-brand" xs="6">
+                <Link to="/">
+                  <img alt="..." />
+                </Link>
+              </Col>
+              <Col className="collapse-close" xs="6">
+                <button className="navbar-toggler" id="navbar-collapse-main">
+                  <span />
+                  <span />
+                </button>
+              </Col>
+            </Row>
           </div>
-        ) : (
-          <div className="navbar-start">
-            <div className="navbar-item">
-              <Link to="/about">Acerca de</Link>
-            </div>
-            <div className="navbar-item">
-              <Link to="/documents">Documentos</Link>
-            </div>
-            <div className="navbar-item">
-              <Link to="/postulation">Postulacion</Link>
-            </div>
-            <div className="navbar-item">
-              <Link to="/results">Resultados</Link>
-            </div>
-          </div>
-        )}
-        <div className="navbar-end">
-          <div className="navbar-item">
-            {props.login ? (
-              <button
-                type="button"
-                className="button is-danger"
-                onClick={props.logout}
-              >
-                Cerrar Sesion
-              </button>
-            ) : (
-              <Link to="signin" className="button is-info">
-                Iniciar Sesion
-              </Link>
-            )}
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink className="nav-link-icon" to="/auth/register" tag={Link}>
+                <i className="ni ni-circle-08" />
+                <span className="nav-link-inner--text">Register</span>
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className="nav-link-icon" to="/auth/login" tag={Link}>
+                <i className="ni ni-key-25" />
+                <span className="nav-link-inner--text">Login</span>
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className="nav-link-icon" to="/app/dashboard" tag={Link}>
+                <i className="ni ni-single-02" />
+                <span className="nav-link-inner--text">Profile</span>
+              </NavLink>
+            </NavItem>
+          </Nav>
+        </UncontrolledCollapse>
+      </Container>
+    </Navbar>
+  </>
 );
 
-export default Navbar;
+export default Navigationbar;
