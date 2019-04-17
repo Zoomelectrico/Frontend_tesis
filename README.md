@@ -23,7 +23,11 @@ Esta sección es un fuerte agradecimiento todas aquellas librerías que facilita
 4.  [Reactstrap](https://reactstrap.github.io/)
 5.  [axios](https://github.com/axios/axios)
 6.  [universal-cookie](https://github.com/reactivestack/cookies/tree/master/packages/universal-cookie#readme)
-7.  [create-react-app](https://github.com/facebook/create-react-app)
+7.  [react-chartjs-2](https://github.com/jerairrest/react-chartjs-2)
+8.  [Chart.js](https://www.chartjs.org/)
+9.  [uuid](https://www.npmjs.com/package/uuid)
+10. [bcrypt.js](https://www.npmjs.com/package/bcryptjs)
+11. [create-react-app](https://github.com/facebook/create-react-app)
 
 #### Alguna Duda?
 
