@@ -10,11 +10,6 @@ class App extends React.Component {
       component: props => <Home {...props} />
     },
     {
-      path: "/app/dashboard",
-      exact: true,
-      component: props => <Dashboard {...props} />
-    },
-    {
       path: "/auth/register",
       exact: true,
       component: props => <Dashboard {...props} />
@@ -22,6 +17,11 @@ class App extends React.Component {
     {
       path: "/auth/login",
       exact: true,
+      component: props => <Dashboard {...props} />
+    },
+    {
+      path: "/app/dashboard",
+      exact: false,
       component: props => <Dashboard {...props} />
     }
   ];

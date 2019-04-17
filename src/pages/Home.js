@@ -12,7 +12,7 @@ import {
   Input,
   Label
 } from "reactstrap";
-import { Navbar } from "../components";
+import { Navbar, Footer } from "../components";
 
 const majors = [
   "Ingenieria de Sistemas",
@@ -191,11 +191,10 @@ const Home = props => {
                             id="major"
                             required={true}
                           >
-                            <option selected="selected" disabled="disabled">
-                              Seleccionar un Carrera
-                            </option>
                             {majors.map(major => (
-                              <option value={major}>{major}</option>
+                              <option key={major} value={major}>
+                                {major}
+                              </option>
                             ))}
                           </Input>
                         </Col>
@@ -219,6 +218,13 @@ const Home = props => {
             </Row>
           </Container>
         </div>
+        <Container fluid>
+          <Row>
+            <Col sm="12">
+              <Footer />
+            </Col>
+          </Row>
+        </Container>
       </div>
     </>
   );
