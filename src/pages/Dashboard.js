@@ -7,6 +7,7 @@ const DashHome = lazy(() => import("./dashboard/Home"));
 const DashPostulate = lazy(() => import("./dashboard/Postulate"));
 const DashProfile = lazy(() => import("./dashboard/Profile"));
 const DashVote = lazy(() => import("./dashboard/Vote"));
+const DashResults = lazy(() => import("./dashboard/Results"));
 
 const routes = [
   {
@@ -42,7 +43,7 @@ const routes = [
     path: "/app/dashboard/results",
     icon: "fas fa-poll",
     exact: true,
-    component: props => <DashVote {...props} />
+    component: props => <DashResults {...props} />
   }
 ];
 
@@ -53,7 +54,11 @@ const Dashboard = props => (
         {...props}
         bgColor=""
         routes={routes}
-        logo={{ link: "/", src: "", alt: "logo" }}
+        logo={{
+          link: "/",
+          src: require("../assets/img/logo-1-x2.png"),
+          alt: "logo"
+        }}
       />
       <div className="main-content">
         <NavbarAdmin {...props} brandText="brand" />

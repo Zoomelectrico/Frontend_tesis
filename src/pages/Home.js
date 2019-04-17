@@ -13,16 +13,7 @@ import {
   Label
 } from "reactstrap";
 import { Navbar, Footer } from "../components";
-
-const majors = [
-  "Ingenieria de Sistemas",
-  "Ingenieria Quimica",
-  "Ingenieria Electrica",
-  "Ingenieria civil",
-  "Ingenieria Mecanica",
-  "Ingenieria de Produccion",
-  "Otro"
-];
+import { majors } from "../utils";
 
 const Home = props => {
   useEffect(() => {
