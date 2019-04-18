@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Col, Row } from "reactstrap";
+import { Container, Col, Row, Card, CardHeader, CardBody } from "reactstrap";
 import { Header } from "../../components";
 
 const DashHome = props => (
@@ -7,7 +7,12 @@ const DashHome = props => (
     <Header />
     <Container className="mt--7" fluid>
       <Row>
-        <Col>{/*Some*/}</Col>
+        <Col>
+          <Card>
+            <CardHeader>{/* */}</CardHeader>
+            <CardBody>{/* */}</CardBody>
+          </Card>
+        </Col>
       </Row>
     </Container>
   </>

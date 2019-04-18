@@ -25,11 +25,18 @@ const NavbarAdmin = props => (
           <DropdownToggle className="pr-0" nav>
             <Media className="align-items-center">
               <span className="avatar avatar-sm rounded-circle">
-                <img alt="..." src="" />
+                <img
+                  alt="..."
+                  src={
+                    props.user.img ||
+                    require("../assets/img/user-placeholder.png")
+                  }
+                />
               </span>
               <Media className="ml-2 d-none d-lg-block">
                 <span className="mb-0 text-sm font-weight-bold">
-                  Jessica Jones
+                  {`${props.user.firstName || "John"} ${props.user.lastName ||
+                    "Snow"}`}
                 </span>
               </Media>
             </Media>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Spinner } from "reactstrap";
 import { Header } from "../../components";
 import {
   Council,
@@ -58,7 +58,13 @@ class DashPostulate extends React.Component {
           <Row>
             <Col sm="12">
               {this.state.loading ? (
-                <div>Loading...</div>
+                <div className="d-flex justify-content-center py-4 card">
+                  <Spinner
+                    className="m-auto"
+                    color="primary"
+                    style={{ width: "3rem", height: "3rem" }}
+                  />
+                </div>
               ) : this.state.electoralGroup ? (
                 <>
                   <School onChange={this.onChange} />

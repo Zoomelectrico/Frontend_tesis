@@ -35,13 +35,25 @@ const Register = props => {
                   <Row>
                     <Col md="12">
                       <FormGroup>
-                        <Label for="name">Nombre y Apellido</Label>
+                        <Label for="first-name">Nombres</Label>
                         <Input
                           className="form-control-alternative"
                           type="text"
-                          name="name"
-                          id="name"
-                          placeholder="Pedro Perez"
+                          name="first-name"
+                          id="first-name"
+                          placeholder="Nombres"
+                        />
+                      </FormGroup>
+                    </Col>
+                    <Col md="12">
+                      <FormGroup>
+                        <Label for="last-name">Apellidos</Label>
+                        <Input
+                          className="form-control-alternative"
+                          type="text"
+                          name="last-name"
+                          id="last-name"
+                          placeholder="Apellido"
                         />
                       </FormGroup>
                     </Col>

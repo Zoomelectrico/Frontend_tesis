@@ -1,4 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 import {
   Container,
   Row,
@@ -13,7 +15,7 @@ import {
   Label
 } from "reactstrap";
 import { Navbar, Footer } from "../components";
-import { majors } from "../utils";
+import { majors, env } from "../utils";
 
 const Home = props => {
   useEffect(() => {
@@ -22,6 +24,39 @@ const Home = props => {
       document.body.classList.remove("bg-default");
     };
   }, []);
+  const [formData, setFormData] = useState({
+    name: "",
+    major: "",
+    email: "",
+    message: ""
+  });
+
+  const onChangeForm = e => {
+    e.preventDefault();
+    const data = {
+      ...formData,
+      [e.target.name]: [e.target.value]
+    };
+    setFormData(data);
+  };
+
+  const [electoralR, setElectoralR] = useState("");
+
+  const onChangeER = e => {
+    e.preventDefault();
+    setElectoralR(e.target.value);
+  };
+
+  const sendForm = async e => {
+    e.preventDefault();
+    const { data } = await axios.post(`${env.API_URL}/home-form`, formData);
+    if (data && data.success) {
+      // All good, send a flash
+    } else {
+      // Send a flash
+    }
+  };
+
   return (
     <>
       <div className="main-content">
@@ -60,7 +95,7 @@ const Home = props => {
           </div>
           <Container>
             <Row>
-              <Col sm="12" md="6" lg="4">
+              <Col sm="12" md="12" lg="4" className="mb-3">
                 <Card>
                   <CardHeader className="p-3">
                     <div className="text-muted text">
@@ -74,7 +109,7 @@ const Home = props => {
                   </CardBody>
                 </Card>
               </Col>
-              <Col sm="12" md="6" lg="4">
+              <Col sm="12" md="12" lg="4" className="mb-3">
                 <Card>
                   <CardHeader className="p-3">
                     <div className="text-muted text">
@@ -88,7 +123,7 @@ const Home = props => {
                   </CardBody>
                 </Card>
               </Col>
-              <Col sm="12" md="6" lg="4">
+              <Col sm="12" md="12" lg="4" className="mb-3">
                 <Card>
                   <CardHeader className="p-3">
                     <div className="text-muted text">
@@ -124,10 +159,18 @@ const Home = props => {
                         name="dni"
                         id="dni"
                         placeholder="cedula de identidad"
+                        onChange={onChangeER}
                       />
                     </Col>
                     <Col sm="12" md="3">
-                      <Button>Consultar</Button>
+                      <Link
+                        to={{
+                          pathname: "/electoral-register",
+                          search: `?dni=${electoralR}`
+                        }}
+                      >
+                        <Button>Revisar</Button>
+                      </Link>
                     </Col>
                   </Row>
                 </FormGroup>
@@ -157,6 +200,7 @@ const Home = props => {
                               id="name"
                               required={true}
                               placeholder="Nombre y Apellido"
+                              onChange={onChangeForm}
                             />
                           </FormGroup>
                         </Col>
@@ -170,6 +214,7 @@ const Home = props => {
                               id="email"
                               required={true}
                               placeholder="Correo Electronico"
+                              onChange={onChangeForm}
                             />
                           </FormGroup>
                         </Col>
@@ -181,12 +226,16 @@ const Home = props => {
                             name="major"
                             id="major"
                             required={true}
+                            onChange={onChangeForm}
                           >
                             {majors.map(major => (
                               <option key={major} value={major}>
                                 {major}
                               </option>
                             ))}
+                            <option key="otro" value="otro">
+                              otro
+                            </option>
                           </Input>
                         </Col>
                         <Col sm="12">
@@ -196,9 +245,14 @@ const Home = props => {
                             type="textarea"
                             name="message"
                             id="message"
+                            onChange={onChangeForm}
                           />
                         </Col>
-                        <Button color="primary" className="mt-3">
+                        <Button
+                          color="primary"
+                          className="mt-3"
+                          onClick={sendForm}
+                        >
                           Enviar
                         </Button>
                       </Row>

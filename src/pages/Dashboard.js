@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Container } from "reactstrap";
-import { Sidebar, NavbarAdmin, FooterAdmin } from "../components";
+import { Sidebar, NavbarAdmin, FooterAdmin, Loading } from "../components";
 
 const DashHome = lazy(() => import("./dashboard/Home"));
 const DashPostulate = lazy(() => import("./dashboard/Postulate"));
@@ -49,7 +49,7 @@ const routes = [
 
 const Dashboard = props => (
   <Router>
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loading />}>
       <Sidebar
         {...props}
         bgColor=""

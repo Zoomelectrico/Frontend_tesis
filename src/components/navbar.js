@@ -27,7 +27,7 @@ const Navigationbar = props => (
             <Row>
               <Col className="collapse-brand" xs="6">
                 <Link to="/">
-                  <img alt="..." />
+                  <img alt="..." src={require("../assets/img/logo-1.png")} />
                 </Link>
               </Col>
               <Col className="collapse-close" xs="6">
