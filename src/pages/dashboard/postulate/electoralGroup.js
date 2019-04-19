@@ -19,7 +19,7 @@ const ElectoralGroup = props => (
       </CardHeader>
       <CardBody>
         <Row>
-          <Col md="4">
+          <Col md="6">
             <FormGroup>
               <Label for="denomination">Denominacion</Label>
               <Input
@@ -32,20 +32,7 @@ const ElectoralGroup = props => (
               />
             </FormGroup>
           </Col>
-          <Col md="4">
-            <FormGroup>
-              <Label for="color">Color</Label>
-              <Input
-                className="form-control-alternative"
-                type="text"
-                name="color"
-                id="color"
-                placeholder="Color"
-                onChange={props.onChange}
-              />
-            </FormGroup>
-          </Col>
-          <Col md="4">
+          <Col md="6">
             <FormGroup>
               <Label for="number">Numero</Label>
               <Input
@@ -54,6 +41,33 @@ const ElectoralGroup = props => (
                 name="number"
                 id="number"
                 placeholder="Numero"
+                onChange={props.onChange}
+              />
+            </FormGroup>
+          </Col>
+
+          <Col md="6">
+            <FormGroup>
+              <Label for="colorName">Nombre del Color</Label>
+              <Input
+                className="form-control-alternative"
+                type="text"
+                name="colorName"
+                id="colorName"
+                placeholder="Nombre del Color"
+                onChange={props.onChange}
+              />
+            </FormGroup>
+          </Col>
+          <Col md="6">
+            <FormGroup>
+              <Label for="colorHex">Codigo Hexadecimal del Color</Label>
+              <Input
+                className="form-control-alternative"
+                type="color"
+                name="colorHex"
+                id="colorHex"
+                placeholder="Color Hex"
                 onChange={props.onChange}
               />
             </FormGroup>
@@ -72,7 +86,11 @@ const ElectoralGroup = props => (
             </FormGroup>
           </Col>
           <Col md="6" className="d-flex justify-content-end">
-            <Button color="success" className="my-auto">
+            <Button
+              color="success"
+              className="my-auto"
+              onClick={props.createElectoralGroup}
+            >
               Registrar
             </Button>
           </Col>

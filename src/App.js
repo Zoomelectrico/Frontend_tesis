@@ -1,5 +1,4 @@
 import React, { lazy, Suspense } from "react";
-import Cookies from "universal-cookie";
 import { Route, Switch } from "react-router-dom";
 import { withRouter } from "react-router";
 import axios from "axios";
@@ -67,16 +66,31 @@ class App extends React.Component {
     updateData: {}
   };
 
+  async componentDidMount() {
+    try {
+      const token = localStorage.getItem(env.KEY);
+      const { id } = JSON.parse(atob(token.split(".")[1]));
+      console.log(id);
+      const { data } = await axios.get(`${env.API_URL}/profile/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (data && data.success) {
+        const state = { ...this.state, user: data.user };
+        this.setState(state);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   register = async () => {
     try {
       const datos = this.state.registerData;
       const { data } = await axios.post(`${env.API_URL}/register-user`, datos);
       if (data && data.success) {
         const { user, token } = data;
-        const cookie = new Cookies();
-        cookie.set(`${env.KEY}`, token, {
-          expires: new Date(Date.now() + 1000 * 3600 * 2)
-        });
+        localStorage.setItem(env.KEY, token);
+        localStorage.setItem(env.USER, JSON.stringify(user));
         const state = { ...this.state, user };
         this.setState(state);
         this.props.history.push("/app/dashboard");
@@ -94,10 +108,8 @@ class App extends React.Component {
       const { data } = await axios.post(`${env.API_URL}/login`, datos);
       if (data && data.success) {
         const { user, token } = data;
-        const cookie = new Cookies();
-        cookie.set(`${env.KEY}`, token, {
-          expires: new Date(Date.now() + 1000 * 3600 * 2)
-        });
+        localStorage.setItem(env.KEY, token);
+        localStorage.setItem(env.USER, JSON.stringify(user));
         const state = { ...this.state, user };
         this.setState(state);
         this.props.history.push("/app/dashboard");
@@ -110,10 +122,9 @@ class App extends React.Component {
   };
 
   logout = async () => {
+    localStorage.removeItem(env.KEY);
     const state = { ...this.state };
-    const cookie = new Cookies();
-    state.user = null;
-    cookie.remove(env.KEY);
+    state.user = {};
     this.setState(state);
     this.props.history.push("/");
   };

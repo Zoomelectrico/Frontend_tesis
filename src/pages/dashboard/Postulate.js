@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Spinner } from "reactstrap";
+import axios from "axios";
 import { Header } from "../../components";
 import {
   Council,
@@ -9,19 +10,53 @@ import {
   SchoolCouncil,
   StudentFederationCenter
 } from "./postulate";
+import { env } from "../../utils";
 
 class DashPostulate extends React.Component {
   state = {
-    electoralGroup: false,
+    electoralGroupStatus: false,
     loading: true
   };
 
-  componentDidMount() {
-    const _id = setTimeout(() => {
-      console.log("api");
-      this.setState({ electoralGroup: true, loading: false });
-    }, 500);
-    console.log(_id);
+  async componentDidMount() {
+    try {
+      const { _id } = JSON.parse(localStorage.getItem(env.USER));
+      const token = localStorage.getItem(env.KEY);
+      if (_id) {
+        const { data } = await axios.get(
+          `${env.API_URL}/electoral-group/${_id}`,
+          {
+            headers: { Authorization: `Bearer ${token}` }
+          }
+        );
+        if (data && data.success) {
+          const { electoralGroup } = data;
+          if (electoralGroup) {
+            this.setState({
+              ...this.state,
+              loading: false,
+              electoralGroupStatus: true,
+              electoralGroup
+            });
+          } else {
+            this.setState({
+              ...this.state,
+              electoralGroupStatus: false,
+              loading: false
+            });
+          }
+        } else {
+          // Send some flashes
+          this.setState({
+            ...this.state,
+            loading: false,
+            electoralGroupStatus: false
+          });
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   onChange = e => {
@@ -45,9 +80,46 @@ class DashPostulate extends React.Component {
     const file = e.target.files[0];
     const name = e.target.name;
     const base64 = await this.getBase64(file);
-    // data:image/
-    state[name] = base64;
-    this.setState(state);
+    if (base64.startsWith("data:image/")) {
+      state[name] = base64;
+      this.setState(state);
+    } else {
+      console.log("Bad image");
+    }
+  };
+
+  createElectoralGroup = async e => {
+    try {
+      const { _id } = JSON.parse(localStorage.getItem(env.USER));
+      const token = localStorage.getItem(env.KEY);
+      if (_id) {
+        const { denomination, colorName, colorHex, logo, number } = this.state;
+        e.preventDefault();
+        const { data } = await axios.post(
+          `${env.API_URL}/create-electoral-group/${_id}`,
+          { denomination, colorName, colorHex, logo, number },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        if (data && data.success) {
+          const { electoralGroup } = data;
+          if (electoralGroup) {
+            this.setState({
+              ...this.state,
+              electoralGroupStatus: true,
+              electoralGroup
+            });
+          } else {
+            console.log("electoralGroup false");
+          }
+        } else {
+          console.log("data false");
+        }
+      } else {
+        console.log("_id false");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   render() {
@@ -65,7 +137,7 @@ class DashPostulate extends React.Component {
                     style={{ width: "3rem", height: "3rem" }}
                   />
                 </div>
-              ) : this.state.electoralGroup ? (
+              ) : this.state.electoralGroupStatus ? (
                 <>
                   <School onChange={this.onChange} />
                   <Council onChange={this.onChange} />
@@ -77,6 +149,7 @@ class DashPostulate extends React.Component {
                 <ElectoralGroup
                   onChange={this.onChange}
                   onChangeFile={this.onChangeFile}
+                  createElectoralGroup={this.createElectoralGroup}
                 />
               )}
             </Col>

@@ -1,11 +1,9 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import Cookies from "universal-cookie";
 import { env } from "../utils";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
-  const cookie = new Cookies();
-  const token = cookie.get(env.KEY);
+  const token = localStorage.getItem(env.KEY);
   return (
     <Route
       {...rest}

@@ -80,7 +80,9 @@ const DashProfile = props => (
                       id="major"
                     >
                       {majors.map(major => (
-                        <option value={major}>{major}</option>
+                        <option key={major} value={major}>
+                          {major}
+                        </option>
                       ))}
                     </Input>
                   </FormGroup>
