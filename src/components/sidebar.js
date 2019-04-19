@@ -59,32 +59,19 @@ const Sidebar = props => {
             <img alt={logo.alt} className="navbar-brand-img" src={logo.src} />
           </NavbarBrand>
         ) : null}
-        <Nav className="align-items-center d-md-none">
-          <UncontrolledDropdown nav>
-            <DropdownToggle nav className="nav-link-icon">
-              <i className="ni ni-bell-55" />
-            </DropdownToggle>
-            <DropdownMenu
-              aria-label="navbar-default-dropdown-1"
-              className="dropdown-menu-arrow"
-              right
-            >
-              <DropdownItem>Action 1</DropdownItem>
-              <DropdownItem>Action 2</DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>Action 3</DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
-          <UncontrolledDropdown nav>
-            <DropdownToggle nav>
-              <Media className="algin-items-center">
-                <span className="avatar avatar-sm rounded-circle">
-                  <img alt="alt" src="" />
-                </span>
-              </Media>
-            </DropdownToggle>
-          </UncontrolledDropdown>
-        </Nav>
+        <div className="align-items-center d-md-none">
+          <Media className="algin-items-center">
+            <span className="avatar avatar-sm rounded-circle">
+              <img
+                alt="User profile"
+                src={
+                  props.user.img ||
+                  require("../assets/img/user-placeholder.png")
+                }
+              />
+            </span>
+          </Media>
+        </div>
         <Collapse navbar isOpen={collapseOpen}>
           <div className="navbar-collapse-header d-md-none">
             <Row>
@@ -107,8 +94,16 @@ const Sidebar = props => {
               </Col>
             </Row>
           </div>
-          <Nav navbar>{createLinks(routes, setCollapseOpen)}</Nav>
-          <hr className="my-3" />
+          <Nav navbar>
+            {createLinks(routes, setCollapseOpen)}
+            <hr className="my-3" />
+            <NavItem>
+              <NavLink onClick={props.logout}>
+                <i className="fas fa-sign-out-alt" />
+                Cerrar Sesion
+              </NavLink>
+            </NavItem>
+          </Nav>
         </Collapse>
       </Container>
     </Navbar>

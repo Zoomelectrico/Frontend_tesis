@@ -60,7 +60,7 @@ const Home = props => {
   return (
     <>
       <div className="main-content">
-        <Navbar />
+        <Navbar {...props} />
         <div className="header bg-gradient-info py-7 py-lg-8">
           <Container>
             <div className="header-body text-center mb-7">

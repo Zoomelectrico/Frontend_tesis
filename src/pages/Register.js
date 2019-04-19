@@ -13,6 +13,8 @@ import {
 } from "reactstrap";
 import { Navbar } from "../components";
 
+// firstName, lastName, dni, carnet, email, password
+
 const Register = props => {
   useEffect(() => {
     document.body.classList.add("bg-default");
@@ -22,45 +24,48 @@ const Register = props => {
   }, []);
   return (
     <div className="main-content">
-      <Navbar />
+      <Navbar {...props} />
       <div className="header bg-gradient-info py-7 py-lg-8">
         <Container>
           <Row className="justify-content-center">
-            <Col sm="12" md="7" lg="5">
+            <Col sm="12" md="10" lg="7">
               <Card style={{ backgroundColor: "#f5f7f9" }}>
                 <CardHeader>
                   <h3>Registrarse</h3>
                 </CardHeader>
                 <CardBody className="p-3">
                   <Row>
-                    <Col md="12">
+                    <Col md="6">
                       <FormGroup>
-                        <Label for="first-name">Nombres</Label>
+                        <Label for="firstName">Nombres</Label>
                         <Input
+                          onChange={props.onChangeRegister}
                           className="form-control-alternative"
                           type="text"
-                          name="first-name"
-                          id="first-name"
+                          name="firstName"
+                          id="firstName"
                           placeholder="Nombres"
                         />
                       </FormGroup>
                     </Col>
-                    <Col md="12">
+                    <Col md="6">
                       <FormGroup>
-                        <Label for="last-name">Apellidos</Label>
+                        <Label for="lastName">Apellidos</Label>
                         <Input
+                          onChange={props.onChangeRegister}
                           className="form-control-alternative"
                           type="text"
-                          name="last-name"
-                          id="last-name"
+                          name="lastName"
+                          id="lastName"
                           placeholder="Apellido"
                         />
                       </FormGroup>
                     </Col>
-                    <Col md="12">
+                    <Col md="6">
                       <FormGroup>
                         <Label for="dni">Cedula de Identidad</Label>
                         <Input
+                          onChange={props.onChangeRegister}
                           className="form-control-alternative"
                           type="number"
                           name="dni"
@@ -69,10 +74,11 @@ const Register = props => {
                         />
                       </FormGroup>
                     </Col>
-                    <Col md="12">
+                    <Col md="6">
                       <FormGroup>
                         <Label for="email">Correo Electronico</Label>
                         <Input
+                          onChange={props.onChangeRegister}
                           className="form-control-alternative"
                           type="email"
                           name="email"
@@ -81,10 +87,11 @@ const Register = props => {
                         />
                       </FormGroup>
                     </Col>
-                    <Col md="12">
+                    <Col md="6">
                       <FormGroup>
                         <Label for="password">Contrasena</Label>
                         <Input
+                          onChange={props.onChangeRegister}
                           className="form-control-alternative"
                           type="password"
                           name="password"
@@ -93,20 +100,25 @@ const Register = props => {
                         />
                       </FormGroup>
                     </Col>
-                    <Col md="12">
+                    <Col md="6">
                       <FormGroup>
-                        <Label for="password-2">Repita la Contrasena</Label>
+                        <Label for="rePassword">Repita la Contrasena</Label>
                         <Input
+                          onChange={props.onChangeRegister}
                           className="form-control-alternative"
                           type="password"
-                          name="password-2"
-                          id="password-2"
+                          name="rePassword"
+                          id="rePassword"
                           placeholder="********"
                         />
                       </FormGroup>
                     </Col>
                     <Col md="12 d-flex justify-content-center">
-                      <Button color="success" className="my-auto">
+                      <Button
+                        color="success"
+                        className="my-auto"
+                        onClick={props.register}
+                      >
                         Registrarse
                       </Button>
                     </Col>

@@ -26,7 +26,7 @@ const NavbarAdmin = props => (
             <Media className="align-items-center">
               <span className="avatar avatar-sm rounded-circle">
                 <img
-                  alt="..."
+                  alt="User profile"
                   src={
                     props.user.img ||
                     require("../assets/img/user-placeholder.png")
@@ -42,29 +42,22 @@ const NavbarAdmin = props => (
             </Media>
           </DropdownToggle>
           <DropdownMenu className="dropdown-menu-arrow" right>
-            <DropdownItem className="noti-title" header tag="div">
-              <h6 className="text-overflow m-0">Welcome!</h6>
+            <DropdownItem to="/app/dashboard/profile" tag={Link}>
+              <i className="fas fa-user" />
+              <span>Mi Perfil</span>
             </DropdownItem>
-            <DropdownItem to="/admin/user-profile" tag={Link}>
-              <i className="ni ni-single-02" />
-              <span>My profile</span>
+            <DropdownItem to="/app/dashboard/vote" tag={Link}>
+              <i className="fas fa-receipt" />
+              <span>Votar</span>
             </DropdownItem>
-            <DropdownItem to="/admin/user-profile" tag={Link}>
-              <i className="ni ni-settings-gear-65" />
-              <span>Settings</span>
-            </DropdownItem>
-            <DropdownItem to="/admin/user-profile" tag={Link}>
-              <i className="ni ni-calendar-grid-58" />
-              <span>Activity</span>
-            </DropdownItem>
-            <DropdownItem to="/admin/user-profile" tag={Link}>
-              <i className="ni ni-support-16" />
-              <span>Support</span>
+            <DropdownItem to="/app/dashboard/results" tag={Link}>
+              <i className="fas fa-poll" />
+              <span>Resultados</span>
             </DropdownItem>
             <DropdownItem divider />
-            <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
-              <i className="ni ni-user-run" />
-              <span>Logout</span>
+            <DropdownItem onClick={props.logout}>
+              <i className="fas fa-sign-out-alt" />
+              <span>Cerrar Sesion</span>
             </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>

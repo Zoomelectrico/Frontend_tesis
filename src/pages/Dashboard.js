@@ -1,7 +1,13 @@
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { Container } from "reactstrap";
-import { Sidebar, NavbarAdmin, FooterAdmin, Loading } from "../components";
+import {
+  Sidebar,
+  NavbarAdmin,
+  FooterAdmin,
+  Loading,
+  ProtectedRoute
+} from "../components";
 
 const DashHome = lazy(() => import("./dashboard/Home"));
 const DashPostulate = lazy(() => import("./dashboard/Postulate"));
@@ -63,7 +69,12 @@ const Dashboard = props => (
       <div className="main-content">
         <NavbarAdmin {...props} brandText="brand" />
         {routes.map(({ name, path, component, exact }) => (
-          <Route key={name} path={path} component={component} exact={exact} />
+          <ProtectedRoute
+            key={name}
+            path={path}
+            component={component}
+            exact={exact}
+          />
         ))}
         <Container fluid>
           <FooterAdmin />

@@ -1,8 +1,10 @@
 import React, { lazy, Suspense } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Cookies from "universal-cookie";
+import { Route, Switch } from "react-router-dom";
+import { withRouter } from "react-router";
 import axios from "axios";
 import { NotFound } from "./pages";
-import { Loading } from "./components";
+import { Loading, ProtectedRoute } from "./components";
 import { env } from "./utils";
 
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -15,7 +17,9 @@ class App extends React.Component {
     {
       path: "/",
       exact: true,
-      component: props => <Home {...props} user={this.state.user} />
+      component: props => (
+        <Home {...props} user={this.state.user} logout={this.logout} />
+      )
     },
     {
       path: "/auth/register",
@@ -24,6 +28,7 @@ class App extends React.Component {
         <Register
           {...props}
           register={this.register}
+          logout={this.logout}
           onChangeRegister={this.onChangeRegister}
         />
       )
@@ -35,6 +40,7 @@ class App extends React.Component {
         <Login
           {...props}
           login={this.login}
+          logout={this.logout}
           onChangeLogin={this.onChangeLogin}
         />
       )
@@ -46,6 +52,7 @@ class App extends React.Component {
         <Dashboard
           {...props}
           user={this.state.user}
+          logout={this.logout}
           updateUser={this.updateUser}
           onChangeUpdate={this.onChangeUpdate}
         />
@@ -55,30 +62,60 @@ class App extends React.Component {
 
   state = {
     user: {},
-    token: "",
     registerData: {},
     loginData: {},
     updateData: {}
   };
 
   register = async () => {
-    const datos = this.state.registerData;
-    const { data } = await axios.post(`${env.API_URL}/register`, datos);
-    if (data && data.success) {
-      // All good, go to the dashboard
-    } else {
-      // send some flash
+    try {
+      const datos = this.state.registerData;
+      const { data } = await axios.post(`${env.API_URL}/register-user`, datos);
+      if (data && data.success) {
+        const { user, token } = data;
+        const cookie = new Cookies();
+        cookie.set(`${env.KEY}`, token, {
+          expires: new Date(Date.now() + 1000 * 3600 * 2)
+        });
+        const state = { ...this.state, user };
+        this.setState(state);
+        this.props.history.push("/app/dashboard");
+      } else {
+        // send some flash
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
   login = async () => {
-    const datos = this.state.loginData;
-    const { data } = await axios.post(`${env.API_URL}/login`, datos);
-    if (data && data.success) {
-      // All good, go the dashboard
-    } else {
-      // Send some flash
+    try {
+      const datos = this.state.loginData;
+      const { data } = await axios.post(`${env.API_URL}/login`, datos);
+      if (data && data.success) {
+        const { user, token } = data;
+        const cookie = new Cookies();
+        cookie.set(`${env.KEY}`, token, {
+          expires: new Date(Date.now() + 1000 * 3600 * 2)
+        });
+        const state = { ...this.state, user };
+        this.setState(state);
+        this.props.history.push("/app/dashboard");
+      } else {
+        // Send some flash
+      }
+    } catch (err) {
+      console.log(err);
     }
+  };
+
+  logout = async () => {
+    const state = { ...this.state };
+    const cookie = new Cookies();
+    state.user = null;
+    cookie.remove(env.KEY);
+    this.setState(state);
+    this.props.history.push("/");
   };
 
   updateUser = async () => {
@@ -129,25 +166,32 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router>
-        <>
-          <Suspense fallback={<Loading />}>
-            <Switch>
-              {this.routes.map(({ path, exact, component }) => (
+      <>
+        <Suspense fallback={<Loading />}>
+          <Switch>
+            {this.routes.map(({ path, exact, component }) =>
+              path.includes("app") ? (
+                <ProtectedRoute
+                  path={path}
+                  exact={exact}
+                  component={component}
+                  key={path}
+                />
+              ) : (
                 <Route
                   path={path}
                   exact={exact}
                   component={component}
                   key={path}
                 />
-              ))}
-              <Route component={NotFound} />
-            </Switch>
-          </Suspense>
-        </>
-      </Router>
+              )
+            )}
+            <Route component={NotFound} />
+          </Switch>
+        </Suspense>
+      </>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
-    "bcryptjs": "^2.4.3",
     "chart.js": "^2.8.0",
     "react": "^16.8.6",
     "react-chartjs-2": "^2.7.6",

@@ -22,7 +22,7 @@ const Login = props => {
   }, []);
   return (
     <div className="main-content">
-      <Navbar />
+      <Navbar {...props} />
       <div className="header bg-gradient-info py-7 py-lg-8">
         <Container>
           <Row className="justify-content-center">
@@ -37,6 +37,7 @@ const Login = props => {
                       <FormGroup>
                         <Label for="email">Correo Electronico</Label>
                         <Input
+                          onChange={props.onChangeLogin}
                           className="form-control-alternative"
                           type="email"
                           name="email"
@@ -49,6 +50,7 @@ const Login = props => {
                       <FormGroup>
                         <Label for="password">Contrasena</Label>
                         <Input
+                          onChange={props.onChangeLogin}
                           className="form-control-alternative"
                           type="password"
                           name="password"
@@ -58,7 +60,11 @@ const Login = props => {
                       </FormGroup>
                     </Col>
                     <Col md="12 d-flex justify-content-center">
-                      <Button color="success" className="my-auto">
+                      <Button
+                        color="success"
+                        className="my-auto"
+                        onClick={props.login}
+                      >
                         Iniciar Sesion
                       </Button>
                     </Col>
